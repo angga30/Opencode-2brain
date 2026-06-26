@@ -9,6 +9,10 @@ import { PatternStore } from './patterns/store';
 import { StatusCommand } from './commands/status';
 import { WeightsCommand } from './commands/weights';
 import { PatternsCommand } from './commands/patterns';
+import { AdjustCommand } from './commands/adjust';
+import { AnalyzeCommand } from './commands/analyze';
+import { ExportCommand, ImportCommand } from './commands/export';
+import { ResetCommand } from './commands/reset';
 
 export const PLUGIN_NAME = 'memory-growth-plugin';
 export const VERSION = '1.0.0';
@@ -60,10 +64,53 @@ function registerCommands(): void {
         const command = new PatternsCommand(patternStore);
         return await command.execute(options);
       }
+    },
+    {
+      name: 'memory-adjust-weight',
+      description: 'Manual weight tuning for skills',
+      handler: async (skill: string, value: string) => {
+        const command = new AdjustCommand(skillLibrary);
+        return await command.execute({ skill, value });
+      }
+    },
+    {
+      name: 'memory-analyze',
+      description: 'Deep analytics and correlations',
+      handler: async (options?: any) => {
+        const command = new AnalyzeCommand(skillLibrary, patternStore);
+        return await command.execute(options);
+      }
+    },
+    {
+      name: 'memory-export',
+      description: 'Export learning state as JSON',
+      handler: async (filename?: string) => {
+        const command = new ExportCommand(skillLibrary, patternStore);
+        return await command.execute(filename);
+      }
+    },
+    {
+      name: 'memory-import',
+      description: 'Import learning state from JSON',
+      handler: async (filename: string) => {
+        const command = new ImportCommand(skillLibrary, patternStore);
+        return await command.execute(filename);
+      }
+    },
+    {
+      name: 'memory-reset',
+      description: 'Reset learning state',
+      handler: async (mode: string = 'soft', confirmed: boolean = false) => {
+        const command = new ResetCommand(skillLibrary, patternStore);
+        return await command.execute(mode as any, confirmed);
+      }
     }
   ];
 
-  console.log(`Registered ${commands.length} commands: /memory-status, /memory-weights, /memory-patterns`);
+  console.log(`Registered ${commands.length} commands:`);
+  for (const cmd of commands) {
+    console.log(`  /${cmd.name} - ${cmd.description}`);
+  }
 }
 
 // Export for testing
