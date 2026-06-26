@@ -15,5 +15,11 @@ module.exports = {
       lines: 80,
       statements: 80
     }
+  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(?:@modelcontextprotocol/sdk)/)'
+  ],
+  moduleNameMapper: {
+    '^@modelcontextprotocol/sdk/(.*)$': '<rootDir>/node_modules/@modelcontextprotocol/sdk/dist/$1'
   }
 };
