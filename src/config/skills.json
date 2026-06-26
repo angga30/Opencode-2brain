@@ -1,0 +1,44 @@
+{
+  "skills": [
+    {
+      "id": "error-handling",
+      "name": "Error Handling",
+      "category": "debugging",
+      "difficulty": "intermediate",
+      "typicalUseCases": ["exception handling", "error recovery", "logging"],
+      "prerequisites": [],
+      "alternatives": ["error-prevention"],
+      "initialWeight": 50
+    },
+    {
+      "id": "testing",
+      "name": "Testing",
+      "category": "quality",
+      "difficulty": "beginner",
+      "typicalUseCases": ["unit tests", "integration tests", "test-driven development"],
+      "prerequisites": [],
+      "alternatives": ["manual-testing"],
+      "initialWeight": 50
+    },
+    {
+      "id": "api-integration",
+      "name": "API Integration",
+      "category": "integration",
+      "difficulty": "intermediate",
+      "typicalUseCases": ["REST APIs", "GraphQL", "webhooks"],
+      "prerequisites": ["http-basics"],
+      "alternatives": ["batch-processing"],
+      "initialWeight": 50
+    },
+    {
+      "id": "optimization",
+      "name": "Code Optimization",
+      "category": "performance",
+      "difficulty": "advanced",
+      "typicalUseCases": ["performance tuning", "memory optimization", "algorithm optimization"],
+      "prerequisites": ["profiling"],
+      "alternatives": ["premature-optimization"],
+      "initialWeight": 50
+    }
+  ]
+}
